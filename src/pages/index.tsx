@@ -27,7 +27,7 @@ export default function Home() {
             >
               By{" "}
               <Image
-                src="/vercel.svg"
+                src="/logofeeswtf.png"
                 alt="Vercel Logo"
                 width={100}
                 height={24}
