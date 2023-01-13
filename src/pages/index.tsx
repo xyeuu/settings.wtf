@@ -16,7 +16,7 @@ export default function Home() {
       <main>
         <div>
           <p>
-            Get started by editing&nbsp;
+            Get started bzeub editing&nbsp;
             <code>pages/index.tsx</code>
           </p>
           <div>
