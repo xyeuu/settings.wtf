@@ -10,7 +10,13 @@ const colors = {
   },
 };
 
-export const theme = extendTheme({ colors });
+export const theme = extendTheme({
+  colors,
+  fonts: {
+    heading: "Cabin, Arial, sans-serif!important",
+    body: "Cabin, Arial, sans-serif!important",
+  },
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
