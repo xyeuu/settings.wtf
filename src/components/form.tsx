@@ -19,10 +19,10 @@ export default function Form() {
   const [theme, setTheme] = useState("light");
   const [age, setAge] = useState("");
   const [address, setAddress] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [mail, setMail] = useState("");
-  const [pseudos, setPseudos] = useState("");
-  const [sexe, setSexe] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [pseudo, setPseudo] = useState("");
+  const [sex, setSex] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -38,10 +38,10 @@ export default function Form() {
     } else if (step === 2) {
       console.log("age: ", age);
       console.log("address: ", address);
-      console.log("telephone: ", telephone);
-      console.log("mail: ", mail);
-      console.log("pseudos: ", pseudos);
-      console.log("sexe: ", sexe);
+      console.log("phoneNumber: ", phoneNumber);
+      console.log("emailAddress: ", emailAddress);
+      console.log("pseudo: ", pseudo);
+      console.log("sex: ", sex);
     }
     // code pour envoyer les données à un serveur ou une autre logique
     setIsSubmitting(false);
@@ -49,12 +49,12 @@ export default function Form() {
 
   return (
     <Center justifyContent="center" height="700px">
-      <Box maxW="555px">
+      <Box maxW="555px" maxH="450px" /*borderWidth="1px"*/>
         <Flex align="center" mb="50">
           <Text fontSize="32px" color="black" fontWeight="bold">
             {step === 1 ? "Interface" : "Profil"}
           </Text>
-          <Flex align="center" marginLeft="180px">
+          <Flex align="center" marginLeft="200px">
             <Button backgroundColor="#FFFFFF" color="#1495D6">
               Skip Interface
             </Button>
@@ -120,15 +120,27 @@ export default function Form() {
                 Select your preferred theme.
               </FormHelperText>
             </FormControl>
+
+            <Button
+              backgroundColor="#1495D6"
+              color="white"
+              marginLeft="460px"
+              onClick={() => {
+                setIsSubmitting(true);
+                setStep(2);
+              }}
+            >
+              Next
+            </Button>
           </Box>
         ) : (
-          <Box>
+          <Box paddingBottom="150px">
             <FormControl>
               <FormLabel>Sexe</FormLabel>
               <Select
-                value={sexe}
-                onChange={(e) => setSexe(e.target.value)}
-                id="sexe-select"
+                value={sex}
+                onChange={(e) => setSex(e.target.value)}
+                id="sex-select"
                 borderColor="#1495D6"
                 borderWidth="2px"
                 color="black"
@@ -136,7 +148,7 @@ export default function Form() {
                 <option value="Inter">Man</option>
                 <option value="Open Sans">Woman</option>
               </Select>
-              <FormHelperText color="#1495D6">Select your sexe.</FormHelperText>
+              <FormHelperText color="#1495D6">Select your sex.</FormHelperText>
             </FormControl>
             <FormControl mt={5}>
               <FormLabel>age</FormLabel>
@@ -165,19 +177,65 @@ export default function Form() {
                 Select your address.
               </FormHelperText>
             </FormControl>
+
+            <FormControl mt={5}>
+              <FormLabel>Phone number</FormLabel>
+              <Input
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                id="phone-number-select"
+                borderColor="#1495D6"
+                borderWidth="2px"
+                color="black"
+              ></Input>
+              <FormHelperText color="#1495D6">
+                Select your phone number.
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl mt={5}>
+              <FormLabel>Email address</FormLabel>
+              <Input
+                value={emailAddress}
+                onChange={(e) => setEmailAddress(e.target.value)}
+                id="email-address-select"
+                borderColor="#1495D6"
+                borderWidth="2px"
+                color="black"
+              ></Input>
+              <FormHelperText color="#1495D6">
+                Select your email address.
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl mt={5}>
+              <FormLabel>Pseudo</FormLabel>
+              <Input
+                value={pseudo}
+                onChange={(e) => setPseudo(e.target.value)}
+                id="pseudo-select"
+                borderColor="#1495D6"
+                borderWidth="2px"
+                color="black"
+              ></Input>
+              <FormHelperText color="#1495D6">
+                Select your pseudo.
+              </FormHelperText>
+            </FormControl>
+
+            <Button
+              backgroundColor="#1495D6"
+              color="white"
+              marginLeft="460px"
+              onClick={() => {
+                setIsSubmitting(true);
+                setStep(2);
+              }}
+            >
+              Next
+            </Button>
           </Box>
         )}
-        <Button
-          backgroundColor="#1495D6"
-          color="white"
-          marginLeft="460px"
-          onClick={() => {
-            setIsSubmitting(true);
-            setStep(2);
-          }}
-        >
-          Next
-        </Button>
       </Box>
     </Center>
   );
