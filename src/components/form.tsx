@@ -6,10 +6,10 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Form() {
   return (
     <Center h="100vh">
-      <Box width="450px" height="450px">
+      <Box maxW="100%" /*borderWidth="1px"*/>
         <Flex align="center">
           <Text
-            marginRight="100%"
+            // marginRight="100%"
             fontSize="32px"
             color="black"
             fontWeight="Bold"
@@ -17,17 +17,19 @@ export default function Form() {
             Interface
           </Text>
 
-          <Flex align={"center"}>
+          <Flex align="center" marginLeft="180px">
             <Button backgroundColor="#FFFFFF" color="#1495D6">
               Skip Interface
             </Button>
 
-            <Text fontSize="18px">1/3</Text>
+            <Text fontSize="18px" fontWeight="semibold" marginLeft="50px">
+              <span style={{ color: "#1495D6" }}>1</span>/3
+            </Text>
           </Flex>
         </Flex>
 
         <Box>
-          <Box mb={9} mt={50} /*paddingLeft="10"*/>
+          <Box mb={9} mt={50}>
             <Text fontSize="14px" fontWeight="semibold">
               Font
             </Text>
@@ -43,7 +45,7 @@ export default function Form() {
             />
           </Box>
 
-          <Box mb={9} mt={5} /*paddingLeft="10"*/>
+          <Box mb={9} mt={5}>
             <Text fontSize="14px" fontWeight="semibold">
               Font Size
             </Text>
@@ -58,7 +60,7 @@ export default function Form() {
             />
           </Box>
 
-          <Box mb={9} mt={5} /*paddingLeft="10"*/>
+          <Box mb={9} mt={5} alignItems="center">
             <Text fontSize="14px" fontWeight="semibold">
               Themes
             </Text>
@@ -73,7 +75,8 @@ export default function Form() {
             />
           </Box>
         </Box>
-        <Button backgroundColor="#1495D6" marginLeft="100%" color="white">
+
+        <Button backgroundColor="#1495D6" color="white" marginLeft="460px">
           Next
         </Button>
       </Box>

@@ -20,7 +20,7 @@ export default function Header() {
         <Button
           backgroundColor="#1495D6"
           borderRadius="0.5em"
-          font-size="15"
+          fontSize="15"
           color="white"
           fontWeight="500"
           fontFamily="Cabin, Arial, sans-serif!important"
