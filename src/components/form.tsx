@@ -57,7 +57,7 @@ export default function Form() {
   }
 
   return (
-    <Center justifyContent="center" height="700px">
+    <Flex align="center" justifyContent="center" height="700px">
       <Box minW="555px" maxH="450px" /*borderWidth="1px"*/>
         {step === 1 && (
           <Flex align="center" mb="50">
@@ -458,6 +458,6 @@ export default function Form() {
           </Box>
         )}
       </Box>
-    </Center>
+    </Flex>
   );
 }
