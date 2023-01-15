@@ -14,20 +14,20 @@ import { useState, useEffect } from "react";
 
 export default function Form() {
   const [step, setStep] = useState(1);
-  const [font, setFont] = useState("");
-  const [fontSize, setFontSize] = useState("");
-  const [theme, setTheme] = useState("");
+  const [font, setFont] = useState("Inter");
+  const [fontSize, setFontSize] = useState("10");
+  const [theme, setTheme] = useState("Light");
   const [age, setAge] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [nickname, setNickname] = useState("");
-  const [sex, setSex] = useState("");
-  const [currency, setCurrency] = useState("");
-  const [language, setLanguage] = useState("");
-  const [chart, setChart] = useState("");
-  const [network, setNetwork] = useState("");
-  const [assets, setAssets] = useState("");
+  const [sex, setSex] = useState("Man");
+  const [currency, setCurrency] = useState("EUR");
+  const [language, setLanguage] = useState("FR");
+  const [chart, setChart] = useState("Line");
+  const [network, setNetwork] = useState("ETH");
+  const [assets, setAssets] = useState("Bitcoin");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -36,17 +36,21 @@ export default function Form() {
   }, [isSubmitting]);
 
   function handleSubmit() {
-    if (step === 1) {
+    if (step === 4) {
       console.log("font: ", font);
       console.log("fontSize: ", fontSize);
       console.log("theme: ", theme);
-    } else if (step === 2) {
+      console.log("sex: ", sex);
       console.log("age: ", age);
       console.log("address: ", address);
       console.log("phoneNumber: ", phoneNumber);
       console.log("emailAddress: ", emailAddress);
       console.log("nickname: ", nickname);
-      console.log("sex: ", sex);
+      console.log("currency: ", currency);
+      console.log("language: ", language);
+      console.log("chart: ", chart);
+      console.log("network: ", network);
+      console.log("assets: ", assets);
     }
     // code pour envoyer les données à un serveur ou une autre logique
     setIsSubmitting(false);
@@ -131,7 +135,7 @@ export default function Form() {
                   borderWidth="2px"
                   color="black"
                 >
-                  <option value="man">Inter</option>
+                  <option value="Inter">Inter</option>
                   <option value="FontUltime">FontUltime</option>
                   <option value="FontDeLaMort">FontDeLaMort</option>
                 </Select>
@@ -141,31 +145,51 @@ export default function Form() {
               </FormControl>
               <FormControl mt={5}>
                 <FormLabel>Font size</FormLabel>
-                <Input
+                <Select
                   value={fontSize}
                   onChange={(e) => setFontSize(e.target.value)}
                   id="font-size-select"
                   borderColor="#1495D6"
                   borderWidth="2px"
                   color="black"
-                ></Input>
+                >
+                  <option value="10px">10</option>
+                  <option value="11px">11</option>
+                  <option value="12px">12</option>
+                  <option value="13px">13</option>
+                  <option value="14px">14</option>
+                  <option value="15px">15</option>
+                  <option value="16px">16</option>
+                  <option value="20px">20</option>
+                  <option value="24px">24</option>
+                  <option value="32px">32</option>
+                  <option value="36px">36</option>
+                  <option value="40px">40</option>
+                  <option value="48px">48</option>
+                  <option value="64px">64</option>
+                  <option value="96px">96</option>
+                  <option value="128px">128</option>
+                </Select>
                 <FormHelperText color="#1495D6">
-                  Inter your favourite font size.
+                  Select your favourite font size.
                 </FormHelperText>
               </FormControl>
 
               <FormControl mt={5}>
                 <FormLabel>Theme</FormLabel>
-                <Input
+                <Select
                   value={theme}
                   onChange={(e) => setTheme(e.target.value)}
                   id="theme-select"
                   borderColor="#1495D6"
                   borderWidth="2px"
                   color="black"
-                ></Input>
+                >
+                  <option value="Light">Light</option>
+                  <option value="Dark">Dark</option>
+                </Select>
                 <FormHelperText color="#1495D6">
-                  Inter your favourite theme.
+                  Select your favourite theme.
                 </FormHelperText>
               </FormControl>
               <Flex marginTop="50px" justifyContent="space-between">
@@ -422,7 +446,6 @@ export default function Form() {
               <Button
                 backgroundColor="#1495D6"
                 color="white"
-                backgroundSize="100px"
                 // marginLeft="460px"
                 onClick={() => {
                   setIsSubmitting(true);
