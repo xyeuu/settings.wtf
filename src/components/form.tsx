@@ -14,15 +14,20 @@ import { useState, useEffect } from "react";
 
 export default function Form() {
   const [step, setStep] = useState(1);
-  const [font, setFont] = useState("Inter");
-  const [fontSize, setFontSize] = useState("16px");
-  const [theme, setTheme] = useState("light");
+  const [font, setFont] = useState("");
+  const [fontSize, setFontSize] = useState("");
+  const [theme, setTheme] = useState("");
   const [age, setAge] = useState("");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
-  const [pseudo, setPseudo] = useState("");
+  const [nickname, setNickname] = useState("");
   const [sex, setSex] = useState("");
+  const [currency, setCurrency] = useState("");
+  const [language, setLanguage] = useState("");
+  const [chart, setChart] = useState("");
+  const [network, setNetwork] = useState("");
+  const [assets, setAssets] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -50,20 +55,70 @@ export default function Form() {
   return (
     <Center justifyContent="center" height="700px">
       <Box maxW="555px" maxH="450px" /*borderWidth="1px"*/>
-        <Flex align="center" mb="50">
-          <Text fontSize="32px" color="black" fontWeight="bold">
-            {step === 1 ? "Interface" : "Profil"}
-          </Text>
-          <Flex align="center" marginLeft="200px">
-            <Button backgroundColor="#FFFFFF" color="#1495D6">
-              Skip Interface
-            </Button>
-            <Text fontSize="18px" fontWeight="semibold" marginLeft="50px">
-              <span style={{ color: "#1495D6" }}>1</span>/3
+        {step === 1 && (
+          <Flex align="center" mb="50">
+            <Text fontSize="32px" color="black" fontWeight="bold">
+              Interface
             </Text>
+            <Flex align="center" marginLeft="200px">
+              <Button
+                backgroundColor="#FFFFFF"
+                color="#1495D6"
+                onClick={() => {
+                  setStep(step + 1);
+                }}
+              >
+                Skip Interface
+              </Button>
+              <Text fontSize="18px" fontWeight="semibold" marginLeft="50px">
+                <span style={{ color: "#1495D6" }}>1</span>/3
+              </Text>
+            </Flex>
           </Flex>
-        </Flex>
-        {step === 1 ? (
+        )}
+        {step === 2 && (
+          <Flex align="center" mb="50">
+            <Text fontSize="32px" color="black" fontWeight="bold">
+              Profil
+            </Text>
+            <Flex align="center" marginLeft="200px">
+              <Button
+                backgroundColor="#FFFFFF"
+                color="#1495D6"
+                onClick={() => {
+                  setStep(step + 1);
+                }}
+              >
+                Skip Profil
+              </Button>
+              <Text fontSize="18px" fontWeight="semibold" marginLeft="50px">
+                <span style={{ color: "#1495D6" }}>2</span>/3
+              </Text>
+            </Flex>
+          </Flex>
+        )}
+        {step === 3 && (
+          <Flex align="center" mb="50">
+            <Text fontSize="32px" color="black" fontWeight="bold">
+              Tools
+            </Text>
+            <Flex align="center" marginLeft="200px">
+              <Button
+                backgroundColor="#FFFFFF"
+                color="#1495D6"
+                onClick={() => {
+                  setStep(step + 1);
+                }}
+              >
+                Skip Tools
+              </Button>
+              <Text fontSize="18px" fontWeight="semibold" marginLeft="50px">
+                <span style={{ color: "#1495D6" }}>3</span>/3
+              </Text>
+            </Flex>
+          </Flex>
+        )}
+        {step === 1 && (
           <Box>
             <FormControl>
               <FormLabel>Font</FormLabel>
@@ -80,7 +135,7 @@ export default function Form() {
                 <option value="Montserrat">Montserrat</option>
               </Select>
               <FormHelperText color="#1495D6">
-                Select your preferred font.
+                Select your favourite font.
               </FormHelperText>
             </FormControl>
             <FormControl mt={5}>
@@ -99,7 +154,7 @@ export default function Form() {
                 <option value="18px">18</option>
               </Select>
               <FormHelperText color="#1495D6">
-                Select your preferred font size.
+                Select your favourite font size.
               </FormHelperText>
             </FormControl>
 
@@ -117,7 +172,7 @@ export default function Form() {
                 <option value="dark">Dark</option>
               </Select>
               <FormHelperText color="#1495D6">
-                Select your preferred theme.
+                Select your favourite theme.
               </FormHelperText>
             </FormControl>
 
@@ -127,13 +182,14 @@ export default function Form() {
               marginLeft="460px"
               onClick={() => {
                 setIsSubmitting(true);
-                setStep(2);
+                setStep(step + 1);
               }}
             >
               Next
             </Button>
           </Box>
-        ) : (
+        )}
+        {step === 2 && (
           <Box paddingBottom="150px">
             <FormControl>
               <FormLabel>Sexe</FormLabel>
@@ -145,13 +201,13 @@ export default function Form() {
                 borderWidth="2px"
                 color="black"
               >
-                <option value="Inter">Man</option>
-                <option value="Open Sans">Woman</option>
+                <option value="man">Man</option>
+                <option value="woman">Woman</option>
               </Select>
               <FormHelperText color="#1495D6">Select your sex.</FormHelperText>
             </FormControl>
             <FormControl mt={5}>
-              <FormLabel>age</FormLabel>
+              <FormLabel>Age</FormLabel>
               <Input
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
@@ -160,11 +216,11 @@ export default function Form() {
                 borderWidth="2px"
                 color="black"
               ></Input>
-              <FormHelperText color="#1495D6">Select your age.</FormHelperText>
+              <FormHelperText color="#1495D6">Inter your age.</FormHelperText>
             </FormControl>
 
             <FormControl mt={5}>
-              <FormLabel>address</FormLabel>
+              <FormLabel>Address</FormLabel>
               <Input
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
@@ -174,7 +230,7 @@ export default function Form() {
                 color="black"
               ></Input>
               <FormHelperText color="#1495D6">
-                Select your address.
+                Inter your address.
               </FormHelperText>
             </FormControl>
 
@@ -189,7 +245,7 @@ export default function Form() {
                 color="black"
               ></Input>
               <FormHelperText color="#1495D6">
-                Select your phone number.
+                Inter your phone number.
               </FormHelperText>
             </FormControl>
 
@@ -204,22 +260,22 @@ export default function Form() {
                 color="black"
               ></Input>
               <FormHelperText color="#1495D6">
-                Select your email address.
+                Inter your email address.
               </FormHelperText>
             </FormControl>
 
             <FormControl mt={5}>
-              <FormLabel>Pseudo</FormLabel>
+              <FormLabel>Nickname</FormLabel>
               <Input
-                value={pseudo}
-                onChange={(e) => setPseudo(e.target.value)}
-                id="pseudo-select"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+                id="nickname-select"
                 borderColor="#1495D6"
                 borderWidth="2px"
                 color="black"
               ></Input>
               <FormHelperText color="#1495D6">
-                Select your pseudo.
+                Inter your nickname.
               </FormHelperText>
             </FormControl>
 
@@ -229,7 +285,113 @@ export default function Form() {
               marginLeft="460px"
               onClick={() => {
                 setIsSubmitting(true);
-                setStep(2);
+                setStep(step + 1);
+              }}
+            >
+              Next
+            </Button>
+          </Box>
+        )}
+        {step === 3 && (
+          <Box paddingBottom="150px">
+            <FormControl>
+              <FormLabel>Currency</FormLabel>
+              <Select
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value)}
+                id="currency-select"
+                borderColor="#1495D6"
+                borderWidth="2px"
+                color="black"
+              >
+                <option value="eur">EUR</option>
+                <option value="usd">USD</option>
+              </Select>
+              <FormHelperText color="#1495D6">
+                Select your favorite currency.
+              </FormHelperText>
+            </FormControl>
+            <FormControl mt={5}>
+              <FormLabel>Language</FormLabel>
+              <Select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                id="language-select"
+                borderColor="#1495D6"
+                borderWidth="2px"
+                color="black"
+              >
+                <option value="fr">FR</option>
+                <option value="en">EN</option>
+              </Select>
+              <FormHelperText color="#1495D6">
+                Select your favorite language.
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl mt={5}>
+              <FormLabel>Chart</FormLabel>
+              <Select
+                value={chart}
+                onChange={(e) => setChart(e.target.value)}
+                id="chart-select"
+                borderColor="#1495D6"
+                borderWidth="2px"
+                color="black"
+              >
+                <option value="Inter">Line</option>
+                <option value="Open Sans">Candle</option>
+              </Select>
+              <FormHelperText color="#1495D6">
+                Select your favorite chart.
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl mt={5}>
+              <FormLabel>Network</FormLabel>
+              <Select
+                value={network}
+                onChange={(e) => setNetwork(e.target.value)}
+                id="network-select"
+                borderColor="#1495D6"
+                borderWidth="2px"
+                color="black"
+              >
+                <option value="eth network">ETH</option>
+                <option value="bsc">BSC</option>
+                <option value="polygon network">Polygon</option>
+              </Select>
+              <FormHelperText color="#1495D6">
+                Select your favourite network.
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl mt={5}>
+              <FormLabel>Assets</FormLabel>
+              <Select
+                value={assets}
+                onChange={(e) => setAssets(e.target.value)}
+                id="assets-select"
+                borderColor="#1495D6"
+                borderWidth="2px"
+                color="black"
+              >
+                <option value="bitcoin">Bitcoin</option>
+                <option value="ethereum">Ethereum</option>
+                <option value="bnb">BNB</option>
+              </Select>
+              <FormHelperText color="#1495D6">
+                Select your favourite assets.
+              </FormHelperText>
+            </FormControl>
+
+            <Button
+              backgroundColor="#1495D6"
+              color="white"
+              marginLeft="460px"
+              onClick={() => {
+                setIsSubmitting(true);
+                setStep(step + 1);
               }}
             >
               Next
