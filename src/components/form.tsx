@@ -45,7 +45,7 @@ export default function Form() {
       console.log("address: ", address);
       console.log("phoneNumber: ", phoneNumber);
       console.log("emailAddress: ", emailAddress);
-      console.log("pseudo: ", pseudo);
+      console.log("nickname: ", nickname);
       console.log("sex: ", sex);
     }
     // code pour envoyer les données à un serveur ou une autre logique
