@@ -54,13 +54,13 @@ export default function Form() {
 
   return (
     <Center justifyContent="center" height="700px">
-      <Box maxW="555px" maxH="450px" /*borderWidth="1px"*/>
+      <Box minW="555px" maxH="450px" /*borderWidth="1px"*/>
         {step === 1 && (
           <Flex align="center" mb="50">
             <Text fontSize="32px" color="black" fontWeight="bold">
               Interface
             </Text>
-            <Flex align="center" marginLeft="200px">
+            <Flex align="center" marginLeft="220px">
               <Button
                 backgroundColor="#FFFFFF"
                 color="#1495D6"
@@ -81,7 +81,7 @@ export default function Form() {
             <Text fontSize="32px" color="black" fontWeight="bold">
               Profil
             </Text>
-            <Flex align="center" marginLeft="200px">
+            <Flex align="center" marginLeft="300px">
               <Button
                 backgroundColor="#FFFFFF"
                 color="#1495D6"
@@ -102,7 +102,7 @@ export default function Form() {
             <Text fontSize="32px" color="black" fontWeight="bold">
               Tools
             </Text>
-            <Flex align="center" marginLeft="200px">
+            <Flex align="center" marginLeft="300px">
               <Button
                 backgroundColor="#FFFFFF"
                 color="#1495D6"
@@ -119,178 +119,200 @@ export default function Form() {
           </Flex>
         )}
         {step === 1 && (
-          <Box>
-            <FormControl>
-              <FormLabel>Font</FormLabel>
-              <Select
-                value={font}
-                onChange={(e) => setFont(e.target.value)}
-                id="font-select"
-                borderColor="#1495D6"
-                borderWidth="2px"
-                color="black"
-              >
-                <option value="Inter">Inter</option>
-                <option value="Open Sans">Open Sans</option>
-                <option value="Montserrat">Montserrat</option>
-              </Select>
-              <FormHelperText color="#1495D6">
-                Select your favourite font.
-              </FormHelperText>
-            </FormControl>
-            <FormControl mt={5}>
-              <FormLabel>Font Size</FormLabel>
-              <Select
-                value={fontSize}
-                onChange={(e) => setFontSize(e.target.value)}
-                id="font-size-select"
-                borderColor="#1495D6"
-                borderWidth="2px"
-                color="black"
-              >
-                <option value="12px">12</option>
-                <option value="14px">14</option>
-                <option value="16px">16</option>
-                <option value="18px">18</option>
-              </Select>
-              <FormHelperText color="#1495D6">
-                Select your favourite font size.
-              </FormHelperText>
-            </FormControl>
+          <>
+            <Box paddingBottom="150px">
+              <FormControl>
+                <FormLabel>Sexe</FormLabel>
+                <Select
+                  value={font}
+                  onChange={(e) => setFont(e.target.value)}
+                  id="font-select"
+                  borderColor="#1495D6"
+                  borderWidth="2px"
+                  color="black"
+                >
+                  <option value="man">Inter</option>
+                  <option value="FontUltime">FontUltime</option>
+                  <option value="FontDeLaMort">FontDeLaMort</option>
+                </Select>
+                <FormHelperText color="#1495D6">
+                  Select your favourite font.
+                </FormHelperText>
+              </FormControl>
+              <FormControl mt={5}>
+                <FormLabel>Font size</FormLabel>
+                <Input
+                  value={fontSize}
+                  onChange={(e) => setFontSize(e.target.value)}
+                  id="font-size-select"
+                  borderColor="#1495D6"
+                  borderWidth="2px"
+                  color="black"
+                ></Input>
+                <FormHelperText color="#1495D6">
+                  Inter your favourite font size.
+                </FormHelperText>
+              </FormControl>
 
-            <FormControl mt={5}>
-              <FormLabel>Themes</FormLabel>
-              <Select
-                value={theme}
-                onChange={(e) => setTheme(e.target.value)}
-                id="theme-select"
-                borderColor="#1495D6"
-                borderWidth="2px"
-                color="black"
-              >
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-              </Select>
-              <FormHelperText color="#1495D6">
-                Select your favourite theme.
-              </FormHelperText>
-            </FormControl>
+              <FormControl mt={5}>
+                <FormLabel>Theme</FormLabel>
+                <Input
+                  value={theme}
+                  onChange={(e) => setTheme(e.target.value)}
+                  id="theme-select"
+                  borderColor="#1495D6"
+                  borderWidth="2px"
+                  color="black"
+                ></Input>
+                <FormHelperText color="#1495D6">
+                  Inter your favourite theme.
+                </FormHelperText>
+              </FormControl>
+              <Flex marginTop="50px" justifyContent="space-between">
+                <Text
+                  color="black"
+                  // cursor="pointer"
+                  // marginLeft="460px"
+                  onClick={() => {
+                    setStep(step - 1);
+                  }}
+                ></Text>
 
-            <Button
-              backgroundColor="#1495D6"
-              color="white"
-              marginLeft="460px"
-              onClick={() => {
-                setIsSubmitting(true);
-                setStep(step + 1);
-              }}
-            >
-              Next
-            </Button>
-          </Box>
+                <Button
+                  backgroundColor="#1495D6"
+                  color="white"
+                  backgroundSize="100px"
+                  // marginLeft="460px"
+                  onClick={() => {
+                    setIsSubmitting(true);
+                    setStep(step + 1);
+                  }}
+                >
+                  Next
+                </Button>
+              </Flex>
+            </Box>
+          </>
         )}
         {step === 2 && (
-          <Box paddingBottom="150px">
-            <FormControl>
-              <FormLabel>Sexe</FormLabel>
-              <Select
-                value={sex}
-                onChange={(e) => setSex(e.target.value)}
-                id="sex-select"
-                borderColor="#1495D6"
-                borderWidth="2px"
-                color="black"
-              >
-                <option value="man">Man</option>
-                <option value="woman">Woman</option>
-              </Select>
-              <FormHelperText color="#1495D6">Select your sex.</FormHelperText>
-            </FormControl>
-            <FormControl mt={5}>
-              <FormLabel>Age</FormLabel>
-              <Input
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-                id="age-select"
-                borderColor="#1495D6"
-                borderWidth="2px"
-                color="black"
-              ></Input>
-              <FormHelperText color="#1495D6">Inter your age.</FormHelperText>
-            </FormControl>
+          <>
+            <Box paddingBottom="150px">
+              <FormControl>
+                <FormLabel>Sexe</FormLabel>
+                <Select
+                  value={sex}
+                  onChange={(e) => setSex(e.target.value)}
+                  id="sex-select"
+                  borderColor="#1495D6"
+                  borderWidth="2px"
+                  color="black"
+                >
+                  <option value="man">Man</option>
+                  <option value="woman">Woman</option>
+                </Select>
+                <FormHelperText color="#1495D6">
+                  Select your sex.
+                </FormHelperText>
+              </FormControl>
+              <FormControl mt={5}>
+                <FormLabel>Age</FormLabel>
+                <Input
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  id="age-select"
+                  borderColor="#1495D6"
+                  borderWidth="2px"
+                  color="black"
+                ></Input>
+                <FormHelperText color="#1495D6">Inter your age.</FormHelperText>
+              </FormControl>
 
-            <FormControl mt={5}>
-              <FormLabel>Address</FormLabel>
-              <Input
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                id="address-select"
-                borderColor="#1495D6"
-                borderWidth="2px"
-                color="black"
-              ></Input>
-              <FormHelperText color="#1495D6">
-                Inter your address.
-              </FormHelperText>
-            </FormControl>
+              <FormControl mt={5}>
+                <FormLabel>Address</FormLabel>
+                <Input
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  id="address-select"
+                  borderColor="#1495D6"
+                  borderWidth="2px"
+                  color="black"
+                ></Input>
+                <FormHelperText color="#1495D6">
+                  Inter your address.
+                </FormHelperText>
+              </FormControl>
 
-            <FormControl mt={5}>
-              <FormLabel>Phone number</FormLabel>
-              <Input
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                id="phone-number-select"
-                borderColor="#1495D6"
-                borderWidth="2px"
-                color="black"
-              ></Input>
-              <FormHelperText color="#1495D6">
-                Inter your phone number.
-              </FormHelperText>
-            </FormControl>
+              <FormControl mt={5}>
+                <FormLabel>Phone number</FormLabel>
+                <Input
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  id="phone-number-select"
+                  borderColor="#1495D6"
+                  borderWidth="2px"
+                  color="black"
+                ></Input>
+                <FormHelperText color="#1495D6">
+                  Inter your phone number.
+                </FormHelperText>
+              </FormControl>
 
-            <FormControl mt={5}>
-              <FormLabel>Email address</FormLabel>
-              <Input
-                value={emailAddress}
-                onChange={(e) => setEmailAddress(e.target.value)}
-                id="email-address-select"
-                borderColor="#1495D6"
-                borderWidth="2px"
-                color="black"
-              ></Input>
-              <FormHelperText color="#1495D6">
-                Inter your email address.
-              </FormHelperText>
-            </FormControl>
+              <FormControl mt={5}>
+                <FormLabel>Email address</FormLabel>
+                <Input
+                  value={emailAddress}
+                  onChange={(e) => setEmailAddress(e.target.value)}
+                  id="email-address-select"
+                  borderColor="#1495D6"
+                  borderWidth="2px"
+                  color="black"
+                ></Input>
+                <FormHelperText color="#1495D6">
+                  Inter your email address.
+                </FormHelperText>
+              </FormControl>
 
-            <FormControl mt={5}>
-              <FormLabel>Nickname</FormLabel>
-              <Input
-                value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
-                id="nickname-select"
-                borderColor="#1495D6"
-                borderWidth="2px"
-                color="black"
-              ></Input>
-              <FormHelperText color="#1495D6">
-                Inter your nickname.
-              </FormHelperText>
-            </FormControl>
+              <FormControl mt={5}>
+                <FormLabel>Nickname</FormLabel>
+                <Input
+                  value={nickname}
+                  onChange={(e) => setNickname(e.target.value)}
+                  id="nickname-select"
+                  borderColor="#1495D6"
+                  borderWidth="2px"
+                  color="black"
+                ></Input>
+                <FormHelperText color="#1495D6">
+                  Inter your nickname.
+                </FormHelperText>
+              </FormControl>
+              <Flex marginTop="50px" justifyContent="space-between">
+                <Button
+                  color="black"
+                  cursor="pointer"
+                  // marginLeft="460px"
+                  onClick={() => {
+                    setStep(step - 1);
+                  }}
+                >
+                  Back
+                </Button>
 
-            <Button
-              backgroundColor="#1495D6"
-              color="white"
-              marginLeft="460px"
-              onClick={() => {
-                setIsSubmitting(true);
-                setStep(step + 1);
-              }}
-            >
-              Next
-            </Button>
-          </Box>
+                <Button
+                  backgroundColor="#1495D6"
+                  color="white"
+                  backgroundSize="100px"
+                  // marginLeft="460px"
+                  onClick={() => {
+                    setIsSubmitting(true);
+                    setStep(step + 1);
+                  }}
+                >
+                  Next
+                </Button>
+              </Flex>
+            </Box>
+          </>
         )}
         {step === 3 && (
           <Box paddingBottom="150px">
@@ -385,17 +407,31 @@ export default function Form() {
               </FormHelperText>
             </FormControl>
 
-            <Button
-              backgroundColor="#1495D6"
-              color="white"
-              marginLeft="460px"
-              onClick={() => {
-                setIsSubmitting(true);
-                setStep(step + 1);
-              }}
-            >
-              Next
-            </Button>
+            <Flex marginTop="50px" justifyContent="space-between">
+              <Button
+                color="black"
+                cursor="pointer"
+                // marginLeft="460px"
+                onClick={() => {
+                  setStep(step - 1);
+                }}
+              >
+                Back
+              </Button>
+
+              <Button
+                backgroundColor="#1495D6"
+                color="white"
+                backgroundSize="100px"
+                // marginLeft="460px"
+                onClick={() => {
+                  setIsSubmitting(true);
+                  setStep(step + 1);
+                }}
+              >
+                Next
+              </Button>
+            </Flex>
           </Box>
         )}
       </Box>
