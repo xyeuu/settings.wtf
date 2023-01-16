@@ -1,9 +1,10 @@
 import { Link, Image, Flex, Button } from "@chakra-ui/react";
 import { Inter } from "@next/font/google";
-
+import { useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Header() {
+  const [scale, setScale] = useState(1);
   return (
     <header>
       <Flex
@@ -26,6 +27,10 @@ export default function Header() {
           fontFamily="Cabin, Arial, sans-serif!important"
           width="128px"
           height="40px"
+          _hover={{ backgroundColor: "#1495D6" }}
+          onMouseEnter={() => setScale(1.1)}
+          onMouseLeave={() => setScale(1)}
+          style={{ transform: `scale(${scale})` }}
         >
           Connect Wallet
         </Button>
