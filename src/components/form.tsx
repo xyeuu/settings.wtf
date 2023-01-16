@@ -1,5 +1,4 @@
 import {
-  Center,
   Box,
   Flex,
   Text,
@@ -9,10 +8,19 @@ import {
   FormHelperText,
   Button,
   Input,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 
 export default function Form() {
+  const [mint, setMint] = useState(1);
+  const [scale, setScale] = useState(1);
   const [step, setStep] = useState(1);
   const [font, setFont] = useState("Inter");
   const [fontSize, setFontSize] = useState("10");
@@ -23,8 +31,8 @@ export default function Form() {
   const [emailAddress, setEmailAddress] = useState("");
   const [nickname, setNickname] = useState("");
   const [sex, setSex] = useState("Man");
-  const [currency, setCurrency] = useState("EUR");
-  const [language, setLanguage] = useState("FR");
+  const [currency, setCurrency] = useState("USD");
+  const [language, setLanguage] = useState("EN");
   const [chart, setChart] = useState("Line");
   const [network, setNetwork] = useState("ETH");
   const [assets, setAssets] = useState("Bitcoin");
@@ -36,7 +44,7 @@ export default function Form() {
   }, [isSubmitting]);
 
   function handleSubmit() {
-    if (step === 4) {
+    if (mint === 2) {
       console.log("font: ", font);
       console.log("fontSize: ", fontSize);
       console.log("theme: ", theme);
@@ -126,7 +134,7 @@ export default function Form() {
           <>
             <Box paddingBottom="150px">
               <FormControl>
-                <FormLabel>Sexe</FormLabel>
+                <FormLabel>Font</FormLabel>
                 <Select
                   value={font}
                   onChange={(e) => setFont(e.target.value)}
@@ -203,9 +211,13 @@ export default function Form() {
                 ></Text>
 
                 <Button
+                  _hover={{ backgroundColor: "#1495D6" }}
+                  onMouseEnter={() => setScale(1.1)}
+                  onMouseLeave={() => setScale(1)}
+                  style={{ transform: `scale(${scale})` }}
                   backgroundColor="#1495D6"
                   color="white"
-                  backgroundSize="100px"
+                  // backgroundSize="100px"
                   // marginLeft="460px"
                   onClick={() => {
                     setIsSubmitting(true);
@@ -222,7 +234,7 @@ export default function Form() {
           <>
             <Box paddingBottom="150px">
               <FormControl>
-                <FormLabel>Sexe</FormLabel>
+                <FormLabel>Sex</FormLabel>
                 <Select
                   value={sex}
                   onChange={(e) => setSex(e.target.value)}
@@ -323,6 +335,10 @@ export default function Form() {
                 </Button>
 
                 <Button
+                  _hover={{ backgroundColor: "#1495D6" }}
+                  onMouseEnter={() => setScale(1.1)}
+                  onMouseLeave={() => setScale(1)}
+                  style={{ transform: `scale(${scale})` }}
                   backgroundColor="#1495D6"
                   color="white"
                   backgroundSize="100px"
@@ -350,8 +366,8 @@ export default function Form() {
                 borderWidth="2px"
                 color="black"
               >
-                <option value="eur">EUR</option>
                 <option value="usd">USD</option>
+                <option value="eur">EUR</option>
               </Select>
               <FormHelperText color="#1495D6">
                 Select your favorite currency.
@@ -367,8 +383,8 @@ export default function Form() {
                 borderWidth="2px"
                 color="black"
               >
-                <option value="fr">FR</option>
                 <option value="en">EN</option>
+                <option value="fr">FR</option>
               </Select>
               <FormHelperText color="#1495D6">
                 Select your favorite language.
@@ -444,19 +460,24 @@ export default function Form() {
               </Button>
 
               <Button
+                _hover={{ backgroundColor: "#1495D6" }}
+                onMouseEnter={() => setScale(1.1)}
+                onMouseLeave={() => setScale(1)}
+                style={{ transform: `scale(${scale})` }}
                 backgroundColor="#1495D6"
                 color="white"
                 // marginLeft="460px"
                 onClick={() => {
                   setIsSubmitting(true);
-                  setStep(step + 1);
+                  setMint(2);
                 }}
               >
-                Next
+                Mint
               </Button>
             </Flex>
           </Box>
         )}
+        ;
       </Box>
     </Flex>
   );
