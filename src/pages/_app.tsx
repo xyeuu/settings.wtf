@@ -1,6 +1,8 @@
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
+import { createClient, WagmiConfig } from "wagmi";
+import { ethers } from "ethers";
 
 const colors = {
   brand: {
@@ -10,6 +12,11 @@ const colors = {
   },
 };
 
+// Setup wagmi client with metemask
+const client = createClient({
+  autoConnect: true,
+  provider: ethers.providers.getDefaultProvider(),
+});
 export const theme = extendTheme({
   colors,
   fonts: {
@@ -21,7 +28,9 @@ export const theme = extendTheme({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <WagmiConfig client={client}>
+        <Component {...pageProps} />
+      </WagmiConfig>
     </ChakraProvider>
   );
 }

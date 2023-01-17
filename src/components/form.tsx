@@ -115,7 +115,7 @@ export default function Form() {
               Tools
             </Text>
             <Flex align="center" marginLeft="300px">
-              <Button
+              {/* <Button
                 backgroundColor="#FFFFFF"
                 color="#1495D6"
                 onClick={() => {
@@ -123,7 +123,7 @@ export default function Form() {
                 }}
               >
                 Skip Tools
-              </Button>
+              </Button> */}
               <Text fontSize="18px" fontWeight="semibold" marginLeft="50px">
                 <span style={{ color: "#1495D6" }}>3</span>/3
               </Text>

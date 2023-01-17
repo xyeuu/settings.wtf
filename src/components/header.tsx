@@ -1,10 +1,15 @@
 import { Link, Image, Flex, Button } from "@chakra-ui/react";
-import { Inter } from "@next/font/google";
+import { InjectedConnector } from "@wagmi/core";
 import { useState } from "react";
-const inter = Inter({ subsets: ["latin"] });
+import { useAccount, useConnect } from "wagmi";
 
 export default function Header() {
   const [scale, setScale] = useState(1);
+  const { address } = useAccount();
+  const { connect } = useConnect({
+    connector: new InjectedConnector(),
+  });
+
   return (
     <header>
       <Flex
@@ -17,7 +22,6 @@ export default function Header() {
         <Link href="/logofeeswtf.png">
           <Image src="/logofeeswtf.png" width="128px" height="24px" />
         </Link>
-
         <Button
           backgroundColor="#1495D6"
           borderRadius="0.5em"
@@ -31,8 +35,9 @@ export default function Header() {
           onMouseEnter={() => setScale(1.1)}
           onMouseLeave={() => setScale(1)}
           style={{ transform: `scale(${scale})` }}
+          onClick={() => connect()}
         >
-          Connect Wallet
+          {address || "Connect Wallet"}
         </Button>
       </Flex>
     </header>
