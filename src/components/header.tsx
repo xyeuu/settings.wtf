@@ -1,5 +1,6 @@
 import { Link, Image, Flex, Button } from "@chakra-ui/react";
 import { InjectedConnector } from "@wagmi/core";
+import React from "react";
 import { useState, useEffect } from "react";
 import { useAccount, useConnect } from "wagmi";
 
