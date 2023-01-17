@@ -8,14 +8,8 @@ import {
   FormHelperText,
   Button,
   Input,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
 } from "@chakra-ui/react";
+import { ethers } from "ethers";
 import { useState, useEffect } from "react";
 
 export default function Form() {
@@ -64,6 +58,27 @@ export default function Form() {
     setIsSubmitting(false);
   }
 
+  // async function Mint() {
+  //   if (typeof window.ethereum !== "undefined") {
+  //     let accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //     const signer = provider.getSigner();
+  //     const contract = new ethers.Contract(
+  //       "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  //       abi,
+  //       signer
+  //     );
+  //     const transaction = await contract.mintNFT();
+  //     await transaction.wait();
+  //     console.log(`${transaction.hash} was mined!`);
+  //   }
+  // }
+
+  // async function handleFormSubmit(event: { preventDefault: () => void; }) {
+  //   event.preventDefault();
+  //   setIsSubmitting(true);
+  // }
+
   return (
     <Flex align="center" justifyContent="center" height="700px">
       <Box minW="555px" maxH="450px" /*borderWidth="1px"*/>
@@ -110,24 +125,13 @@ export default function Form() {
           </Flex>
         )}
         {step === 3 && (
-          <Flex align="center" mb="50">
+          <Flex align="center" mb="50" /*justifyContent="space-between"*/>
             <Text fontSize="32px" color="black" fontWeight="bold">
               Tools
             </Text>
-            <Flex align="center" marginLeft="300px">
-              {/* <Button
-                backgroundColor="#FFFFFF"
-                color="#1495D6"
-                onClick={() => {
-                  setStep(step + 1);
-                }}
-              >
-                Skip Tools
-              </Button> */}
-              <Text fontSize="18px" fontWeight="semibold" marginLeft="50px">
-                <span style={{ color: "#1495D6" }}>3</span>/3
-              </Text>
-            </Flex>
+            <Text fontSize="18px" fontWeight="semibold" marginLeft="465px">
+              <span style={{ color: "#1495D6" }}>3</span>/3
+            </Text>
           </Flex>
         )}
         {step === 1 && (
