@@ -37,9 +37,9 @@ export default function Header() {
         justifyContent="space-between"
         width="100%"
       >
-        <Link href="/logosettingswtf3.png">
-          <Image src="/logosettingswtf3.png" width="228px" />
-        </Link>
+        {/* <Link href="/logosettingswtf3.png"> */}
+        <Image src="/logosettingswtf3.png" width="228px" />
+        {/* </Link> */}
         <ConnectButton />
         {/* <Button
           backgroundColor="#1495D6"
