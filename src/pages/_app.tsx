@@ -1,8 +1,56 @@
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
-import { createClient, WagmiConfig } from "wagmi";
-import { ethers } from "ethers";
+//import { ethers } from "ethers";
+import "@rainbow-me/rainbowkit/styles.css";
+
+import {
+  argentWallet,
+  trustWallet,
+  metaMaskWallet,
+} from "@rainbow-me/rainbowkit/wallets";
+
+import {
+  connectorsForWallets,
+  getDefaultWallets,
+  RainbowKitProvider,
+} from "@rainbow-me/rainbowkit";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { polygonMumbai } from "wagmi/chains";
+import { publicProvider } from "wagmi/providers/public";
+
+const { chains, provider, webSocketProvider } = configureChains(
+  [polygonMumbai],
+  [publicProvider()]
+);
+
+const { wallets } = getDefaultWallets({
+  appName: "Settings.wtf",
+  chains,
+});
+
+const demoAppInfo = {
+  appName: "Settings.wtf",
+};
+
+const connectors = connectorsForWallets([
+  ...wallets,
+  {
+    groupName: "Other",
+    wallets: [
+      argentWallet({ chains }),
+      trustWallet({ chains }),
+      metaMaskWallet({ chains }),
+    ],
+  },
+]);
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider,
+  webSocketProvider,
+});
 
 const colors = {
   brand: {
@@ -13,10 +61,11 @@ const colors = {
 };
 
 // Setup wagmi client with metemask
-const client = createClient({
-  autoConnect: true,
-  provider: ethers.providers.getDefaultProvider(),
-});
+// const client = createClient({
+//   autoConnect: true,
+//   provider: ethers.providers.getDefaultProvider(),
+// });
+
 export const theme = extendTheme({
   colors,
   fonts: {
@@ -28,8 +77,10 @@ export const theme = extendTheme({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <WagmiConfig client={client}>
-        <Component {...pageProps} />
+      <WagmiConfig client={wagmiClient}>
+        <RainbowKitProvider appInfo={demoAppInfo} chains={chains}>
+          <Component {...pageProps} />
+        </RainbowKitProvider>
       </WagmiConfig>
     </ChakraProvider>
   );
