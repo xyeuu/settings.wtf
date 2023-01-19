@@ -466,7 +466,6 @@ export default function Form() {
                   backgroundColor="#1495D6"
                   color="white"
                   onClick={async () => {
-                    onOpen;
                     if (!signer) return;
                     // mint();
 
