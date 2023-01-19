@@ -521,27 +521,21 @@ export default function Form() {
                 <Modal isOpen={isOpen} onClose={onClose}>
                   <ModalOverlay />
                   <ModalContent>
-                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalHeader>Success ✅</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                       <Text>
                         Your NFT has been minted successfully. You can view it
+                        here
                       </Text>
                       <Link
                         color="#1495D6"
                         href={`https://mumbai.polygonscan.com/tx/${txHash}`}
                         isExternal
                       >
-                        {txHash}
+                        transaction hash
                       </Link>
                     </ModalBody>
-
-                    <ModalFooter>
-                      <Button colorScheme="blue" mr={3} onClick={onClose}>
-                        Close
-                      </Button>
-                      <Button variant="ghost">Secondary Action</Button>
-                    </ModalFooter>
                   </ModalContent>
                 </Modal>
               )}

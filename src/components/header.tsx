@@ -38,7 +38,7 @@ export default function Header() {
         width="100%"
       >
         {/* <Link href="/logosettingswtf3.png"> */}
-        <Image src="/logosettingswtf3.png" width="228px" />
+        <Image src="/logofeeswtf.png" width="228px" />
         {/* </Link> */}
         <ConnectButton />
         {/* <Button
