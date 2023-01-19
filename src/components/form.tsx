@@ -18,6 +18,7 @@ import {
   ModalBody,
   useDisclosure,
   ModalFooter,
+  Link,
 } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
@@ -31,8 +32,9 @@ import {
 // import abi from "../settings.wtf/contract-abi"
 
 export default function Form() {
-  const [transaction, setTransaction] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [txHash, setTxHash] = useState(false);
+  const [isLoading, setIsLoading] = useState(1);
   const [totalMinted, setTotalMinted] = useState();
   const [minte] = useState(1);
   const { data: signer } = useSigner();
@@ -82,8 +84,12 @@ export default function Form() {
   }
 
   return (
-    <Flex align="center" justifyContent="center" height="700px">
-      <Box minW="555px" maxH="450px" /*borderWidth="1px"*/>
+    <Flex align={["center"]} justifyContent="center" height={["700px"]}>
+      <Box
+        minW={["90%", "90%", "555px"]}
+        maxH="450px"
+        /*borderWidth="1px"*/ px="15px"
+      >
         {step === 1 && (
           <Flex align="center" mb="50">
             <Text fontSize="32px" color="black" fontWeight="bold">
@@ -457,7 +463,7 @@ export default function Form() {
               >
                 Back
               </Button>
-              {isLoading === false && (
+              {isLoading === 1 && (
                 <Button
                   _hover={{ backgroundColor: "#1495D6" }}
                   onMouseEnter={() => setScale(1.1)}
@@ -486,18 +492,20 @@ export default function Form() {
                       }
                     );
 
-                    setIsLoading(true);
+                    setIsLoading(2);
 
                     await tx.wait();
+                    setTxHash(tx.hash);
 
-                    setIsLoading(false);
+                    setIsLoading(3);
+                    onOpen();
                   }}
                 >
                   Mint
                 </Button>
               )}
 
-              {isLoading === true && (
+              {isLoading === 2 && (
                 <Button
                   _hover={{ backgroundColor: "#1495D6" }}
                   onMouseEnter={() => setScale(1.1)}
@@ -508,6 +516,34 @@ export default function Form() {
                 >
                   Minting...
                 </Button>
+              )}
+              {isLoading === 3 && (
+                <Modal isOpen={isOpen} onClose={onClose}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Modal Title</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <Text>
+                        Your NFT has been minted successfully. You can view it
+                      </Text>
+                      <Link
+                        color="#1495D6"
+                        href={`https://mumbai.polygonscan.com/tx/${txHash}`}
+                        isExternal
+                      >
+                        {txHash}
+                      </Link>
+                    </ModalBody>
+
+                    <ModalFooter>
+                      <Button colorScheme="blue" mr={3} onClick={onClose}>
+                        Close
+                      </Button>
+                      <Button variant="ghost">Secondary Action</Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
               )}
             </Flex>
           </Box>
