@@ -8,19 +8,43 @@ import {
   FormHelperText,
   Button,
   Input,
+  AlertIcon,
+  Alert,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  useDisclosure,
+  ModalFooter,
 } from "@chakra-ui/react";
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
+import {
+  useAccount,
+  useProvider,
+  useSigner,
+  useContractRead,
+  useWaitForTransaction,
+} from "wagmi";
+// import abi from "../settings.wtf/contract-abi"
 
 export default function Form() {
-  const [mint, setMint] = useState(1);
+  const [transaction, setTransaction] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalMinted, setTotalMinted] = useState();
+  const [minte] = useState(1);
+  const { data: signer } = useSigner();
+  const provider = useProvider();
+  const { address, isConnected } = useAccount();
   const [scale, setScale] = useState(1);
   const [step, setStep] = useState(1);
   const [font, setFont] = useState("Inter");
   const [fontSize, setFontSize] = useState("10");
   const [theme, setTheme] = useState("Light");
   const [age, setAge] = useState("");
-  const [address, setAddress] = useState("");
+  const [addresse, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [nickname, setNickname] = useState("");
@@ -38,13 +62,13 @@ export default function Form() {
   }, [isSubmitting]);
 
   function handleSubmit() {
-    if (mint === 2) {
+    if (minte === 2) {
       console.log("font: ", font);
       console.log("fontSize: ", fontSize);
       console.log("theme: ", theme);
       console.log("sex: ", sex);
       console.log("age: ", age);
-      console.log("address: ", address);
+      console.log("address: ", addresse);
       console.log("phoneNumber: ", phoneNumber);
       console.log("emailAddress: ", emailAddress);
       console.log("nickname: ", nickname);
@@ -54,30 +78,8 @@ export default function Form() {
       console.log("network: ", network);
       console.log("assets: ", assets);
     }
-    // code pour envoyer les données à un serveur ou une autre logique
     setIsSubmitting(false);
   }
-
-  // async function Mint() {
-  //   if (typeof window.ethereum !== "undefined") {
-  //     let accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     const signer = provider.getSigner();
-  //     const contract = new ethers.Contract(
-  //       "0x5FbDB2315678afecb367f032d93F642f64180aa3",
-  //       abi,
-  //       signer
-  //     );
-  //     const transaction = await contract.mintNFT();
-  //     await transaction.wait();
-  //     console.log(`${transaction.hash} was mined!`);
-  //   }
-  // }
-
-  // async function handleFormSubmit(event: { preventDefault: () => void; }) {
-  //   event.preventDefault();
-  //   setIsSubmitting(true);
-  // }
 
   return (
     <Flex align="center" justifyContent="center" height="700px">
@@ -207,8 +209,6 @@ export default function Form() {
               <Flex marginTop="50px" justifyContent="space-between">
                 <Text
                   color="black"
-                  // cursor="pointer"
-                  // marginLeft="460px"
                   onClick={() => {
                     setStep(step - 1);
                   }}
@@ -221,8 +221,6 @@ export default function Form() {
                   style={{ transform: `scale(${scale})` }}
                   backgroundColor="#1495D6"
                   color="white"
-                  // backgroundSize="100px"
-                  // marginLeft="460px"
                   onClick={() => {
                     setIsSubmitting(true);
                     setStep(step + 1);
@@ -270,7 +268,7 @@ export default function Form() {
               <FormControl mt={5}>
                 <FormLabel>Address</FormLabel>
                 <Input
-                  value={address}
+                  value={addresse}
                   onChange={(e) => setAddress(e.target.value)}
                   id="address-select"
                   borderColor="#1495D6"
@@ -330,7 +328,6 @@ export default function Form() {
                 <Button
                   color="black"
                   cursor="pointer"
-                  // marginLeft="460px"
                   onClick={() => {
                     setStep(step - 1);
                   }}
@@ -346,7 +343,6 @@ export default function Form() {
                   backgroundColor="#1495D6"
                   color="white"
                   backgroundSize="100px"
-                  // marginLeft="460px"
                   onClick={() => {
                     setIsSubmitting(true);
                     setStep(step + 1);
@@ -455,29 +451,64 @@ export default function Form() {
               <Button
                 color="black"
                 cursor="pointer"
-                // marginLeft="460px"
                 onClick={() => {
                   setStep(step - 1);
                 }}
               >
                 Back
               </Button>
+              {isLoading === false && (
+                <Button
+                  _hover={{ backgroundColor: "#1495D6" }}
+                  onMouseEnter={() => setScale(1.1)}
+                  onMouseLeave={() => setScale(1)}
+                  style={{ transform: `scale(${scale})` }}
+                  backgroundColor="#1495D6"
+                  color="white"
+                  onClick={async () => {
+                    if (!signer) return;
+                    // mint();
 
-              <Button
-                _hover={{ backgroundColor: "#1495D6" }}
-                onMouseEnter={() => setScale(1.1)}
-                onMouseLeave={() => setScale(1)}
-                style={{ transform: `scale(${scale})` }}
-                backgroundColor="#1495D6"
-                color="white"
-                // marginLeft="460px"
-                onClick={() => {
-                  setIsSubmitting(true);
-                  setMint(2);
-                }}
-              >
-                Mint
-              </Button>
+                    console.log(address, isConnected, signer, provider);
+                    const contract = new ethers.Contract(
+                      "0xC7ADA3A4ebc0221F130BE98E9454b2dAcDfBF87B",
+                      [
+                        "function mint(address to, string memory uri) public payable",
+                      ],
+                      signer
+                    );
+
+                    const tx = await contract.mint(
+                      address,
+                      "https://ipfs.io/ipfs/QmRGJRFTqVP76bRHLn2rFNZAU8yDsUck2DvKoDzeyeCVww?filename=0.json",
+                      {
+                        value: ethers.utils.parseEther("0.01"),
+                      }
+                    );
+
+                    setIsLoading(true);
+
+                    await tx.wait();
+
+                    setIsLoading(false);
+                  }}
+                >
+                  Mint
+                </Button>
+              )}
+
+              {isLoading === true && (
+                <Button
+                  _hover={{ backgroundColor: "#1495D6" }}
+                  onMouseEnter={() => setScale(1.1)}
+                  onMouseLeave={() => setScale(1)}
+                  style={{ transform: `scale(${scale})` }}
+                  backgroundColor="#1495D6"
+                  color="white"
+                >
+                  Minting...
+                </Button>
+              )}
             </Flex>
           </Box>
         )}
