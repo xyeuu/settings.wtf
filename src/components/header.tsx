@@ -35,12 +35,17 @@ export default function Header() {
         paddingRight="1em"
         paddingTop="1em"
         justifyContent="space-between"
-        width="100%"
       >
         {/* <Link href="/logosettingswtf3.png"> */}
-        <Image src="/logofeeswtf.png" width="228px" />
+        <Image src="/logofeeswtf.png" width="128px" height="24px" />
         {/* </Link> */}
-        <ConnectButton />
+        <ConnectButton
+          showBalance={{
+            smallScreen: false,
+            largeScreen: true,
+          }}
+          chainStatus="icon"
+        />
         {/* <Button
           backgroundColor="#1495D6"
           borderRadius="0.5em"

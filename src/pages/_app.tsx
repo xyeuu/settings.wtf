@@ -35,14 +35,14 @@ const demoAppInfo = {
 
 const connectors = connectorsForWallets([
   ...wallets,
-  {
-    groupName: "Other",
-    wallets: [
-      argentWallet({ chains }),
-      trustWallet({ chains }),
-      metaMaskWallet({ chains }),
-    ],
-  },
+  // {
+  //   groupName: "Other",
+  //   wallets: [
+  //     argentWallet({ chains }),
+  //     trustWallet({ chains }),
+  //     metaMaskWallet({ chains }),
+  //   ],
+  // },
 ]);
 
 const wagmiClient = createClient({

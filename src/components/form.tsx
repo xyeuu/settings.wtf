@@ -32,6 +32,14 @@ import {
 } from "wagmi";
 // import abi from "../settings.wtf/contract-abi"
 
+const breakpoints = {
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  "2xl": "96em",
+};
+
 export default function Form() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [txHash, setTxHash] = useState(false);
@@ -85,10 +93,16 @@ export default function Form() {
   }
 
   return (
-    <Flex align={["center"]} justifyContent="center" height={["700px"]}>
+    <Flex align={["center"]} justifyContent="center" height={["800px"]}>
       <Box
-        minW={["90%", "90%", "555px"]}
-        maxH="450px"
+        minW={{
+          base: "1px",
+          sm: "20px",
+          md: "40px",
+          lg: "60px",
+          xl: "80px",
+          "2xl": "90px",
+        }}
         /*borderWidth="1px"*/ px="15px"
       >
         {step === 1 && (
@@ -96,7 +110,17 @@ export default function Form() {
             <Text fontSize="32px" color="black" fontWeight="bold">
               Interface
             </Text>
-            <Flex align="center" marginLeft="220px">
+            <Flex
+              align="center"
+              marginLeft={{
+                base: "1px",
+                sm: "20px",
+                md: "40px",
+                lg: "60px",
+                xl: "80px",
+                "2xl": "90px",
+              }}
+            >
               <Button
                 backgroundColor="#FFFFFF"
                 color="#1495D6"
