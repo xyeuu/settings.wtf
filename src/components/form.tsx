@@ -1,3 +1,4 @@
+// const IPFS = require("ipfs");
 import {
   Box,
   Flex,
@@ -8,8 +9,6 @@ import {
   FormHelperText,
   Button,
   Input,
-  AlertIcon,
-  Alert,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -23,26 +22,13 @@ import {
 
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
-import {
-  useAccount,
-  useProvider,
-  useSigner,
-  useContractRead,
-  useWaitForTransaction,
-} from "wagmi";
-// import abi from "../settings.wtf/contract-abi"
-
-const breakpoints = {
-  sm: "30em",
-  md: "48em",
-  lg: "62em",
-  xl: "80em",
-  "2xl": "96em",
-};
+import { useAccount, useProvider, useSigner } from "wagmi";
+import { useIPFS } from "./ipfs";
 
 export default function Form() {
+  const ipfs = useIPFS();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [txHash, setTxHash] = useState(false);
+  const [txHash, setTxHash] = useState();
   const [isLoading, setIsLoading] = useState(1);
   const [totalMinted, setTotalMinted] = useState();
   const [minte] = useState(1);
@@ -92,6 +78,23 @@ export default function Form() {
     setIsSubmitting(false);
   }
 
+  const settings = {
+    font: font,
+    fontSize: fontSize,
+    theme: theme,
+    sex: sex,
+    age: age,
+    addresse: addresse,
+    phoneNumber: phoneNumber,
+    emailAddress: emailAddress,
+    nickname: nickname,
+    currency: currency,
+    language: language,
+    chart: chart,
+    network: network,
+    assets: assets,
+  };
+
   return (
     <Flex align={["center"]} justifyContent="center" height={["800px"]}>
       <Box
@@ -103,7 +106,7 @@ export default function Form() {
           xl: "80px",
           "2xl": "90px",
         }}
-        /*borderWidth="1px"*/ px="15px"
+        px="15px"
       >
         {step === 1 && (
           <Flex align="center" mb="50">
@@ -158,7 +161,7 @@ export default function Form() {
           </Flex>
         )}
         {step === 3 && (
-          <Flex align="center" mb="50" /*justifyContent="space-between"*/>
+          <Flex align="center" mb="50">
             <Text fontSize="32px" color="black" fontWeight="bold">
               Tools
             </Text>
@@ -421,7 +424,6 @@ export default function Form() {
                 Select your favorite language.
               </FormHelperText>
             </FormControl>
-
             <FormControl mt={5}>
               <FormLabel>Chart</FormLabel>
               <Select
@@ -439,7 +441,6 @@ export default function Form() {
                 Select your favorite chart.
               </FormHelperText>
             </FormControl>
-
             <FormControl mt={5}>
               <FormLabel>Network</FormLabel>
               <Select
@@ -458,7 +459,6 @@ export default function Form() {
                 Select your favourite network.
               </FormHelperText>
             </FormControl>
-
             <FormControl mt={5}>
               <FormLabel>Assets</FormLabel>
               <Select
@@ -477,7 +477,6 @@ export default function Form() {
                 Select your favourite assets.
               </FormHelperText>
             </FormControl>
-
             <Flex marginTop="50px" justifyContent="space-between">
               <Button
                 color="black"
@@ -500,6 +499,29 @@ export default function Form() {
                     if (!signer) return;
                     // mint();
 
+                    const JSONFile = new Blob([JSON.stringify(settings)], {
+                      type: "text/plain",
+                    });
+
+                    const bufferFile: any = await new Promise((resolve) => {
+                      let fileReader = new FileReader();
+                      fileReader.onload = (event: any) =>
+                        resolve(event.target.result);
+                      fileReader.readAsArrayBuffer(JSONFile);
+                    });
+
+                    let fileReader = new FileReader();
+                    fileReader.readAsBinaryString(JSONFile);
+
+                    const hash = await new Promise(async (resolve) => {
+                      ipfs.files.add(
+                        Buffer.from(bufferFile),
+                        (err: any, file: any) => {
+                          resolve(file[0].hash);
+                        }
+                      );
+                    });
+
                     console.log(address, isConnected, signer, provider);
                     const contract = new ethers.Contract(
                       "0xC7ADA3A4ebc0221F130BE98E9454b2dAcDfBF87B",
@@ -511,11 +533,13 @@ export default function Form() {
 
                     const tx = await contract.mint(
                       address,
-                      "https://ipfs.io/ipfs/QmRGJRFTqVP76bRHLn2rFNZAU8yDsUck2DvKoDzeyeCVww?filename=0.json",
+                      "https://ipfs.io/ipfs/" + hash,
                       {
                         value: ethers.utils.parseEther("0.01"),
                       }
                     );
+
+                    console.log("https://ipfs.io/ipfs/" + hash);
 
                     setIsLoading(2);
 
@@ -529,7 +553,6 @@ export default function Form() {
                   Mint
                 </Button>
               )}
-
               {isLoading === 2 && (
                 <Button
                   _hover={{ backgroundColor: "#1495D6" }}
@@ -547,7 +570,7 @@ export default function Form() {
                   <ModalOverlay />
                   <ModalContent>
                     <ModalHeader>Success ✅</ModalHeader>
-                    <ModalCloseButton />
+
                     <ModalBody>
                       <Text>
                         Your NFT has been minted successfully. You can view it
@@ -561,13 +584,17 @@ export default function Form() {
                         transaction hash
                       </Link>
                     </ModalBody>
+                    <ModalFooter>
+                      <Button colorScheme="blue" mr={3} onClick={onClose}>
+                        Close
+                      </Button>
+                    </ModalFooter>
                   </ModalContent>
                 </Modal>
               )}
             </Flex>
           </Box>
         )}
-        ;
       </Box>
     </Flex>
   );
