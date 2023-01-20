@@ -4,6 +4,7 @@ export const useIPFS = () => {
   const [ipfs, setIPFS] = useState<any>();
 
   const mountIPFS = async () => {
+    //@ts-ignore
     const ipfs = (await import("ipfs-api")).default({
       host: "ipfs.infura.io",
       port: 5001,
