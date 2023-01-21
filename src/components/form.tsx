@@ -96,43 +96,25 @@ export default function Form() {
   };
 
   return (
-    <Flex align={["center"]} justifyContent="center" height={["800px"]}>
-      <Box
-        minW={{
-          base: "1px",
-          sm: "20px",
-          md: "40px",
-          lg: "60px",
-          xl: "80px",
-          "2xl": "90px",
-        }}
-        px="15px"
-      >
+    <Flex align="center" justifyContent="center" height="100%">
+      <Box>
         {step === 1 && (
-          <Flex align="center" mb="50">
+          <Flex align="center" mb="20px" height="150px">
             <Text fontSize="32px" color="black" fontWeight="bold">
               Interface
             </Text>
-            <Flex
-              align="center"
-              marginLeft={{
-                base: "1px",
-                sm: "20px",
-                md: "40px",
-                lg: "60px",
-                xl: "80px",
-                "2xl": "90px",
-              }}
-            >
+            <Flex align="center" marginLeft="300px">
               <Button
                 backgroundColor="#FFFFFF"
                 color="#1495D6"
                 onClick={() => {
                   setStep(step + 1);
+                  console.log(step);
                 }}
               >
                 Skip Interface
               </Button>
+
               <Text fontSize="18px" fontWeight="semibold" marginLeft="50px">
                 <span style={{ color: "#1495D6" }}>1</span>/3
               </Text>
@@ -140,7 +122,7 @@ export default function Form() {
           </Flex>
         )}
         {step === 2 && (
-          <Flex align="center" mb="50">
+          <Flex align="center" mb="20px" height="150px">
             <Text fontSize="32px" color="black" fontWeight="bold">
               Profil
             </Text>
@@ -161,7 +143,7 @@ export default function Form() {
           </Flex>
         )}
         {step === 3 && (
-          <Flex align="center" mb="50">
+          <Flex align="center" mb="20px" height="150px">
             <Text fontSize="32px" color="black" fontWeight="bold">
               Tools
             </Text>
