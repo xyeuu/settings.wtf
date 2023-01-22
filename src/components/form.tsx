@@ -97,13 +97,13 @@ export default function Form() {
 
   return (
     <Flex align="center" justifyContent="center" height="100%">
-      <Box minW="646px">
+      <Box width={["300px", "646px"]}>
         {step === 1 && (
           <Flex align="center" mb="20px" height="150px">
             <Text fontSize="32px" color="black" fontWeight="bold">
               Interface
             </Text>
-            <Flex align="center" marginLeft="300px">
+            <Flex align="center" marginLeft={["1px", "300px"]}>
               <Button
                 backgroundColor="#FFFFFF"
                 color="#1495D6"
@@ -115,7 +115,11 @@ export default function Form() {
                 Skip Interface
               </Button>
 
-              <Text fontSize="18px" fontWeight="semibold" marginLeft="50px">
+              <Text
+                fontSize="18px"
+                fontWeight="semibold"
+                marginLeft={["1px", "50px"]}
+              >
                 <span style={{ color: "#1495D6" }}>1</span>/3
               </Text>
             </Flex>
@@ -131,7 +135,7 @@ export default function Form() {
             <Text fontSize="32px" color="black" fontWeight="bold">
               Profil
             </Text>
-            <Flex align="center" marginLeft="300px">
+            <Flex align="center" marginLeft={["1px", "300px"]}>
               <Button
                 backgroundColor="#FFFFFF"
                 color="#1495D6"
@@ -157,7 +161,11 @@ export default function Form() {
             <Text fontSize="32px" color="black" fontWeight="bold">
               Tools
             </Text>
-            <Text fontSize="18px" fontWeight="semibold" marginLeft="465px">
+            <Text
+              fontSize="18px"
+              fontWeight="semibold"
+              marginLeft={["1px", "300px"]}
+            >
               <span style={{ color: "#1495D6" }}>3</span>/3
             </Text>
           </Flex>
