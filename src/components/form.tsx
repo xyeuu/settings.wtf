@@ -97,7 +97,7 @@ export default function Form() {
 
   return (
     <Flex align="center" justifyContent="center" height="100%">
-      <Box>
+      <Box minW="646px">
         {step === 1 && (
           <Flex align="center" mb="20px" height="150px">
             <Text fontSize="32px" color="black" fontWeight="bold">
@@ -122,7 +122,12 @@ export default function Form() {
           </Flex>
         )}
         {step === 2 && (
-          <Flex align="center" mb="20px" height="150px">
+          <Flex
+            align="center"
+            mb="20px"
+            height="150px"
+            justifyContent="space-between"
+          >
             <Text fontSize="32px" color="black" fontWeight="bold">
               Profil
             </Text>
@@ -143,7 +148,12 @@ export default function Form() {
           </Flex>
         )}
         {step === 3 && (
-          <Flex align="center" mb="20px" height="150px">
+          <Flex
+            align="center"
+            mb="20px"
+            height="150px"
+            justifyContent="space-between"
+          >
             <Text fontSize="32px" color="black" fontWeight="bold">
               Tools
             </Text>

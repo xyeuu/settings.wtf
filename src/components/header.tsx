@@ -36,9 +36,9 @@ export default function Header() {
         paddingTop="1em"
         justifyContent="space-between"
       >
-        {/* <Link href="/logosettingswtf3.png"> */}
-        <Image src="/logofeeswtf.png" width="128px" height="24px" />
-        {/* </Link> */}
+        <Link href="/lozi4.png">
+          <Image src="/lozi4.png" width="128px" height="24px" />
+        </Link>
         <ConnectButton
           showBalance={{
             smallScreen: false,
