@@ -522,6 +522,17 @@ export default function Form() {
                       );
                     });
 
+                    const getStaticProps = async () => {
+                      const res = await fetch("/api/pin?hash=" + hash);
+                      const data = await res.json();
+
+                      return {
+                        props: { Settings: data },
+                      };
+                    };
+
+                    getStaticProps();
+
                     console.log(address, isConnected, signer, provider);
                     const contract = new ethers.Contract(
                       "0xC7ADA3A4ebc0221F130BE98E9454b2dAcDfBF87B",
