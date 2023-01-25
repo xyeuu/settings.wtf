@@ -535,7 +535,7 @@ export default function Form() {
 
                     console.log(address, isConnected, signer, provider);
                     const contract = new ethers.Contract(
-                      "0xC7ADA3A4ebc0221F130BE98E9454b2dAcDfBF87B",
+                      "0x76525EcA3e7872719D4C8baD3f988BC55abA5937",
                       [
                         "function mint(address to, string memory uri) public payable",
                       ],

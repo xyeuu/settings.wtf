@@ -5,22 +5,16 @@ import { extendTheme } from "@chakra-ui/react";
 import "@rainbow-me/rainbowkit/styles.css";
 
 import {
-  argentWallet,
-  trustWallet,
-  metaMaskWallet,
-} from "@rainbow-me/rainbowkit/wallets";
-
-import {
   connectorsForWallets,
   getDefaultWallets,
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { polygonMumbai } from "wagmi/chains";
+import { polygon } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [polygonMumbai],
+  [polygon],
   [publicProvider()]
 );
 
