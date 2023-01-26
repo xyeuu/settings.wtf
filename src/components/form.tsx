@@ -535,7 +535,7 @@ export default function Form() {
 
                     console.log(address, isConnected, signer, provider);
                     const contract = new ethers.Contract(
-                      "0x76525EcA3e7872719D4C8baD3f988BC55abA5937",
+                      "0xB95a6ecBBDc065b4d3Aed24158Fe8c47A3C71a64",
                       [
                         "function mint(address to, string memory uri) public payable",
                       ],
@@ -544,10 +544,7 @@ export default function Form() {
 
                     const tx = await contract.mint(
                       address,
-                      "https://ipfs.io/ipfs/" + hash,
-                      {
-                        value: ethers.utils.parseEther("0.01"),
-                      }
+                      "https://ipfs.io/ipfs/" + hash
                     );
 
                     console.log("https://ipfs.io/ipfs/" + hash);
