@@ -184,8 +184,9 @@ export default function Form() {
                   color="black"
                 >
                   <option value="Inter">Inter</option>
-                  <option value="FontUltime">FontUltime</option>
-                  <option value="FontDeLaMort">FontDeLaMort</option>
+                  <option value="Arial">Arial</option>
+                  <option value="Georgia">Georgia</option>
+                  <option value="Verdana">Verdana</option>
                 </Select>
                 <FormHelperText color="#1495D6">
                   Select your favourite font.
