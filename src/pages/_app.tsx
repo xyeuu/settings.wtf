@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
-//import { ethers } from "ethers";
+
 import "@rainbow-me/rainbowkit/styles.css";
 
 import {
@@ -27,17 +27,7 @@ const demoAppInfo = {
   appName: "Settings.wtf",
 };
 
-const connectors = connectorsForWallets([
-  ...wallets,
-  // {
-  //   groupName: "Other",
-  //   wallets: [
-  //     argentWallet({ chains }),
-  //     trustWallet({ chains }),
-  //     metaMaskWallet({ chains }),
-  //   ],
-  // },
-]);
+const connectors = connectorsForWallets([...wallets]);
 
 const wagmiClient = createClient({
   autoConnect: true,
@@ -53,12 +43,6 @@ const colors = {
     700: "#2a69ac",
   },
 };
-
-// Setup wagmi client with metemask
-// const client = createClient({
-//   autoConnect: true,
-//   provider: ethers.providers.getDefaultProvider(),
-// });
 
 export const theme = extendTheme({
   colors,

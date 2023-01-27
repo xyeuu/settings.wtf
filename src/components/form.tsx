@@ -1,4 +1,3 @@
-// const IPFS = require("ipfs");
 import {
   Box,
   Flex,
