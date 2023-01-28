@@ -194,9 +194,9 @@ export default function Form() {
                   <option value="Blou">Blou</option>
                   <option value="Moka">Moka</option>
                   <option value="Lombok">Lombok</option>
-                  <option value="Nagasaki">Nagasaki</option>
+                  {/* <option value="Nagasaki">Nagasaki</option>
                   <option value="Coco Biker">Coco Biker</option>
-                  <option value="Parley">Parley</option>
+                  <option value="Parley">Parley</option> */}
                 </Select>
                 <FormHelperText color="#1495D6">
                   Select your favourite font.
