@@ -186,6 +186,17 @@ export default function Form() {
                   <option value="Arial">Arial</option>
                   <option value="Georgia">Georgia</option>
                   <option value="Verdana">Verdana</option>
+                  <option value="Okaso">Okaso</option>
+                  <option value="Polya">Polya</option>
+                  <option value="Abang">Abang</option>
+                  <option value="Kolikö">Kolikö</option>
+                  <option value="Nordic">Nordic</option>
+                  <option value="Blou">Blou</option>
+                  <option value="Moka">Moka</option>
+                  <option value="Lombok">Lombok</option>
+                  <option value="Nagasaki">Nagasaki</option>
+                  <option value="Coco Biker">Coco Biker</option>
+                  <option value="Parley">Parley</option>
                 </Select>
                 <FormHelperText color="#1495D6">
                   Select your favourite font.
