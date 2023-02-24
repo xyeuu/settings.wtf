@@ -2,7 +2,7 @@ module.exports = {
   ci: {
     collect: {
       numberOfRuns: 3,
-      staticDistDir: "./dist/settings.wtf",
+      staticDistDir: "./dist/ng-github-lighthouse-ci",
     },
     assert: {
       assertions: {
