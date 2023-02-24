@@ -1,12 +1,11 @@
-name: Lighthouse
-on: push
+name: CI
+on: [push]
 jobs:
-  build:
+  lighthouseci:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install Dependencies --legacy-peer-deps
-        run: npm install
-      - name: Run Lighthouse
-        run: npm run lighthouse
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: npm install && npm install -g @lhci/cli@0.6.x
+      - run: npm run build
+      - run: lhci autorun
